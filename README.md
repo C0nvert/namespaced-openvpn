@@ -181,12 +181,12 @@ If the UI is still the same , reload the Page.
 
 ### NOTES:
 
-Custom Scripts are located under /usr/bin
-dnsleaktest.sh  Test DNS Leak
-tr-webui-installer.sh  Installs the new Transmission WebUI
+Custom Scripts are located under `/usr/bin`
+`dnsleaktest.sh`  Test DNS Leak
+`tr-webui-installer.sh`  Installs the new Transmission WebUI
 
-PureVPN use UDP Port 29212 instead of 53, cause it's been used by PiHole DNS
-Problem DNS Resolving not working with UDP need further digging. Possible cause 29212 don't get resolved!
+PureVPN use `UDP Port 29212` instead of `53`, cause it's been used by PiHole DNS
+Problem DNS Resolving not working with UDP need further digging. Possible cause `29212` don't get resolved!
 
 ### Useful Commands:
 
@@ -202,8 +202,8 @@ chown user:group (-R) /pathToFile
 sudo openvpn --config /pathtoovpn --config /pathToConfig (e.g override.conf)
 ```
 #### Start Namespaced-OpenVPN
- Namespace default value = protected
- If you want to change it add the parameter --namespace <DESIRED NAMEDPACE>
+ Namespace `default value = protected`
+ If you want to change it add the parameter `--namespace <DESIRED NAMEDPACE>`
 
 Example String
 ```
