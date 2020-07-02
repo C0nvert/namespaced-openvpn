@@ -1,6 +1,8 @@
 #Pyload Service
 #/etc/systemd/system/pyload.service
 # Don't forget to set Permissions for /home/pyload/
+#chown user:group (-R) /pathToFile
+#chmod 755 /pathToFile
 
 [Unit]
 Description=pyload Service
