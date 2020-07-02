@@ -170,7 +170,7 @@ The Displayed IP should match the IP from the DNS Leak Script
 ### 10. **Optional: Change WebUI Interface for a Modern one**
 
 ```
-wget https://github.com/C0nvert/transmission-web-control/raw/master/release/install-tr-control.sh --no-check-certificate
+wget https://github.com/ronggang/transmission-web-control/raw/master/release/install-tr-control.sh --no-check-certificate
 ```
 
     bash install-tr-control.sh
