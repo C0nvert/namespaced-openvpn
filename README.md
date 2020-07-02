@@ -179,6 +179,36 @@ wget https://github.com/C0nvert/transmission-web-control/raw/master/release/inst
 After installation finished go to  `http://server_domain_name_or_IP:9091`
 If the UI is still the same , reload the Page.
 
+### NOTES:
+
+Custom Scripts are located under /usr/bin
+dnsleaktest.sh  Test DNS Leak
+tr-webui-installer.sh  Installs the new Transmission WebUI
+
+PureVPN use UDP Port 29212 instead of 53, cause it's been used by PiHole DNS
+Problem DNS Resolving not working with UDP need further digging. Possible cause 29212 don't get resolved!
+
+### Useful Commands:
+
+#### Permissions
+```
+chmod 775 -R /pathToFile
+chmod 755 /pathToFile
+chmod +x /pathToFile
+chown user:group (-R) /pathToFile
+```
+#### Start OpenVPN
+```
+sudo openvpn --config /pathtoovpn --config /pathToConfig (e.g override.conf)
+```
+#### Start Namespaced-OpenVPN
+ Namespace default value = protected
+ If you want to change it add the parameter --namespace <DESIRED NAMEDPACE>
+
+Example String
+```
+sudo /usr/local/sbin/namespaced-openvpn --config /home/"$USER"/.config/openvpn/foo.ovpn --writepid /var/run/openvpn-protected-foo-"$USER".pid --log /var/log/openvpn-protected-foo-"$USER".log --daemon
+```
 
 ### **Useful Links:**
 
