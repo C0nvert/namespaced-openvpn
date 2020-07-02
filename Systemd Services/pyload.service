@@ -1,5 +1,6 @@
 #Pyload Service
 #/etc/systemd/system/pyload.service
+# Don't forget to set Permissions for /home/pyload/
 
 [Unit]
 Description=pyload Service
