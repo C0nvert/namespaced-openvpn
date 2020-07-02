@@ -4,19 +4,19 @@ Tested on *Raspbian Buster* and Ubuntu Server 18.04
 
 *For non-root user, you should prefix  `sudo`  with all commands.*
 
-1.  **Installing Dependencies**
+### 1.  **Installing Dependencies**
 ```
   apt update
   apt install openvpn iproute2 python dnsutils dnsmasq curl transmission-daemon socat
 
 ```
-2. **Download namespaced-openvpn Script**:
+### 2. **Download namespaced-openvpn Script**:
 ```
     cd /usr/local/sbin
     curl -sLSO https://raw.githubusercontent.com/C0nvert/namespaced-openvpn/master/namespaced-openvpn
     chmod +x namespaced-openvpn
 ```
-3. **Setting UP provided OpenVPN config files and create a `auth.txt` wich will contain your VPN Login Data:**
+### 3. **Setting UP provided OpenVPN config files and create a `auth.txt` wich will contain your VPN Login Data:**
   ```
    mkdir -p ~/.config/openvpn
    cp *.ovpn ~/.config/openvpn/
@@ -24,7 +24,7 @@ Tested on *Raspbian Buster* and Ubuntu Server 18.04
    chmod 400 ~/.config/openvpn/*.ovpn
    chmod 400 ~/.config/openvpn/auth.txt
 ```
-4. **Test your Connection:**
+### 4. **Test your Connection:**
 ```
 sudo /usr/local/sbin/namespaced-openvpn --config /home/"$USER"/.config/openvpn/foo.ovpn --writepid /var/run/openvpn-protected-foo-"$USER".pid --log /var/log/openvpn-protected-foo-"$USER".log --daemon
 ```
@@ -38,7 +38,7 @@ You should see now a different Public IP Adress from the one you see if you just
 
 If thats the case continue
 
-5. **Create socat script:**
+### 5. **Create socat script:**
 This script will later allow you to access Transmission's WebUI from your local Network. Without this it wouldn't be possible, cause the Namespace is kind of a isolated Container.
 
  ```
@@ -58,7 +58,7 @@ This script will later allow you to access Transmission's WebUI from your local 
 Now we make this script executable
 `chmod 755 /etc/socat/9091_socat`
 
-6. **Create Systemd Service to start all Services at boot.**
+### 6. **Create Systemd Service to start all Services at boot.**
 
 **Socat Systemd:**
 
@@ -134,18 +134,18 @@ Important: Change in the Line `ExecStart "ch2-udp.ovpn` to your ovpn `file Name`
     [Install]
     WantedBy=multi-user.target
 
-7. **Enable all Systemd Services**
+### 7. **Enable all Systemd Services**
 
 ```
 systemctl enable socat-tcp9091.service
 systemctl enable transmission-daemon.service
 systemctl enable navpn.service
 ```
-8. **Reboot your Device**
+### 8. **Reboot your Device**
 
    `reboot now`
 
-9. **Test for DNS Leak**
+### 9. **Test for DNS Leak**
 
 
 ```
@@ -160,7 +160,14 @@ chmod +x dnsleaktest.sh
 cd ~/
 sudo ip netns exec protected sudo -u "$USER" ./dnsleaktest.sh
 ```
-10. **Optional: Change WebUI Interface for a Modern one**
+Add this magnet link into your torrent client: 
+```
+magnet:?xt=urn:btih:be716e0415044000dc8fc2383819c84525a78a59&dn=checkmyiptorrent+Tracking+Link&tr=http%3A%2F%2F34.204.227.31%2F
+```
+The Displayed IP should match the IP from the DNS Leak Script
+
+
+### 10. **Optional: Change WebUI Interface for a Modern one**
 
 ```
 wget https://github.com/C0nvert/transmission-web-control/raw/master/release/install-tr-control.sh --no-check-certificate
@@ -173,11 +180,12 @@ After installation finished go to  `http://server_domain_name_or_IP:9091`
 If the UI is still the same , reload the Page.
 
 
-
-**Useful Links:**
+### **Useful Links:**
 
 https://github.com/rakshasa/rtorrent/wiki/VPN-with-Traffic-Splitting
 
 https://github.com/slingamn/namespaced-openvpn
 
 https://github.com/ronggang/transmission-web-control/wiki/Linux-Installation
+
+https://github.com/ronggang/transmission-web-control
