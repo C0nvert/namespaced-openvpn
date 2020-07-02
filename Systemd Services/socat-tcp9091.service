@@ -1,0 +1,17 @@
+#Socat Systemd:
+#/etc/systemd/system/socat-tcp9091.service
+
+
+[Unit]
+Description=socat Service 9091
+After=transmission-daemon.service
+BindsTo=transmission-daemon.service
+
+[Service]
+Type=simple
+User=root
+ExecStart=/etc/socat/9091_socat
+Restart=on-abort
+
+[Install]
+WantedBy=multi-user.target

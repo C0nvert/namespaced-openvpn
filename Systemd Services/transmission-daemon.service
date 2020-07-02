@@ -1,0 +1,17 @@
+#Transmission Systemd:
+#/lib/systemd/system/transmission-daemon.service
+
+[Unit]
+Description=Transmission BitTorrent Daemon
+After=navpn.service
+Requires=navpn.service
+
+
+[Service]
+User=root
+Type=simple
+ExecStart=/bin/sh -c 'exec /sbin/ip netns exec protected /usr/bin/sudo -u debian-transmission /usr/bin/transmission-daemon -f --log-error --config-dir /var/lib/transmission-daemon/info'
+ExecReload=/bin/kill -s HUP $MAINPID
+
+[Install]
+WantedBy=multi-user.target

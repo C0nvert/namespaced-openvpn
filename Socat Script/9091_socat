@@ -1,0 +1,7 @@
+#!/bin/bash
+# /etc/socat/9091_socat
+# Socat-Script Port 9091
+#Don't forget to make this Script executable!!! Use chmod 755
+
+# TCP Port 9091
+sudo /usr/bin/socat tcp-listen:9091,fork,reuseaddr exec:'ip netns exec protected socat STDIO tcp-connect\:127.0.0.1\:9091',nofork

@@ -1,0 +1,15 @@
+#Pyload Service
+#/etc/systemd/system/pyload.service
+
+[Unit]
+Description=pyload Service
+After=network.target
+
+
+[Service]
+User=pyload
+Type=simple
+ExecStart=/usr/bin/pyLoadCore --configdir=/home/pyload/.pyload/
+
+[Install]
+WantedBy=multi-user.target
